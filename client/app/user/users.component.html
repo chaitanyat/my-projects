@@ -1,0 +1,22 @@
+<div class="container">
+	<table class="table table-bordered">
+        <thead>
+        	<tr>
+	            <th>First Name</th>
+	            <th>Last Name</th>
+	            <th>Email</th>
+	            <th>Status</th>
+                <th></th>
+	            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.mail_id}}</td>
+                <td>{{user.status_name}}</td>
+                <td><a [routerLink]="['/home/users', user.user_id]">Edit</a></td>
+            </tr> 
+        </tbody>
+    </table>
+</div>
