@@ -20,17 +20,17 @@ var UserService = (function () {
     UserService.prototype.getAll = function () {
         return this.http.get(this.config.apiUrl + '/users', this.jwt()).map(function (response) { return response.json(); });
     };
-    UserService.prototype.getById = function (_id) {
-        return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map(function (response) { return response.json(); });
+    UserService.prototype.getById = function (user_id) {
+        return this.http.get(this.config.apiUrl + '/users/' + user_id, this.jwt()).map(function (response) { return response.json(); });
     };
     UserService.prototype.create = function (user) {
         return this.http.post(this.config.apiUrl + '/users/register', user, this.jwt());
     };
     UserService.prototype.update = function (user) {
-        return this.http.put(this.config.apiUrl + '/users/' + user._id, user, this.jwt());
+        return this.http.put(this.config.apiUrl + '/users/' + user.user_id, user, this.jwt());
     };
-    UserService.prototype.delete = function (_id) {
-        return this.http.delete(this.config.apiUrl + '/users/' + _id, this.jwt());
+    UserService.prototype.delete = function (user_id) {
+        return this.http.delete(this.config.apiUrl + '/users/' + user_id, this.jwt());
     };
     // private helper methods
     UserService.prototype.jwt = function () {

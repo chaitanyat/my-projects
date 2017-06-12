@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 
-import { User } from '../_models/index';
+import { User } from '../_models/User';
 import { UserService } from '../_services/index';
 
 @Component ({
@@ -21,11 +21,16 @@ export class UserFormComponent implements OnInit {
     constructor(private userService: UserService,
                 private route: ActivatedRoute,
                 private location: Location  ) {
-
+        this.user = new User();
     }
 
     ngOnInit(): void {
-        console.log(this.route.params);
-        this.route.params.switchMap((params: Params) => this.userService.getById(params['id'])).subscribe(user => { this.user = user; });
+        this.route.params.switchMap((params: Params) => this.userService.getById(params['id'])).subscribe(user => {
+            this.user = user;
+        });
+    }
+
+    submitUser(): void {
+        console.log(this.user);
     }
 }

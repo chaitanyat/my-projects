@@ -1,9 +1,14 @@
 ﻿export class User {
-    _id: string;
+    user_id: number;
+    address: string;
+    country: string;
+    created_date: string;
+    mobile_no: string;
+    state: string;
     mail_id: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    firstname: string;
+    lastname: string;
     status_id: number;
     status_name: string;
 }

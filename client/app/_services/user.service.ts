@@ -2,7 +2,7 @@
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { AppConfig } from '../app.config';
-import { User } from '../_models/index';
+import { User } from '../_models/User';
 
 @Injectable()
 export class UserService {
@@ -12,8 +12,8 @@ export class UserService {
         return this.http.get(this.config.apiUrl + '/users', this.jwt()).map((response: Response) => response.json());
     }
 
-    getById(_id: string) {
-        return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map((response: Response) => response.json());
+    getById(user_id: number) {
+        return this.http.get(this.config.apiUrl + '/users/' + user_id, this.jwt()).map((response: Response) => response.json() as User);
     }
 
     create(user: User) {
@@ -21,11 +21,11 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put(this.config.apiUrl + '/users/' + user._id, user, this.jwt());
+        return this.http.put(this.config.apiUrl + '/users/' + user.user_id, user, this.jwt());
     }
 
-    delete(_id: string) {
-        return this.http.delete(this.config.apiUrl + '/users/' + _id, this.jwt());
+    delete(user_id: number) {
+        return this.http.delete(this.config.apiUrl + '/users/' + user_id, this.jwt());
     }
 
     // private helper methods

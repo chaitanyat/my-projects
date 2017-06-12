@@ -1,20 +1,45 @@
-<div>
+<div class="col-md-3">
     <h2>Edit User</h2>
-    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
-            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+    <form name="form" (ngSubmit)="f.form.valid && submitUser()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control" name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required />
+            <div *ngIf="f.submitted && !firstname.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
+            <label for="lastname">Last Name</label>
+            <input type="text" class="form-control" name="lastname" [(ngModel)]="user.lastname" #lastname="ngModel" required />
+            <div *ngIf="f.submitted && !lastname.valid" class="help-block">Last Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mail_id.valid }">
+            <label for="mail_id">Email</label>
+            <input type="email" class="form-control" name="mail_id" [(ngModel)]="user.mail_id" #mail_id="ngModel" required />
+            <div *ngIf="f.submitted && !mail_id.valid" class="help-block">Email is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+            <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required />
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
         </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mobile_no.valid }">
+            <label for="mobile_no">Mobile</label>
+            <input type="text" class="form-control" name="mobile_no" [(ngModel)]="user.mobile_no" #mobile_no="ngModel" />
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" name="address" [(ngModel)]="user.address" #address="ngModel" />
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !state.valid }">
+            <label for="state">State</label>
+            <input type="text" class="form-control" name="state" [(ngModel)]="user.state" #state="ngModel" />
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !country.valid }">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" name="country" [(ngModel)]="user.country" #country="ngModel" />
+        </div>
+
         <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Login</button>
-            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+            <button [disabled]="loading" class="btn btn-primary">Submit</button>
         </div>
     </form>
 </div>

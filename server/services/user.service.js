@@ -63,10 +63,9 @@ function getAll() {
 
 function getById(_id) {
     var deferred = Q.defer();
-console.log(_id + "   in edit");
     db.query("SELECT * FROM user WHERE user_id="+_id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
-        deferred.resolve(user);
+        deferred.resolve(user[0]);
     });
 
     /*db.users.findById(_id, function (err, user) {
