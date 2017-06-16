@@ -15,7 +15,6 @@ var UsersComponent = (function () {
     function UsersComponent(userService) {
         this.userService = userService;
         this.users = [];
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     UsersComponent.prototype.ngOnInit = function () {
         this.loadAllUsers();

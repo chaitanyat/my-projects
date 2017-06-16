@@ -32,6 +32,7 @@ var LoginComponent = (function () {
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(function (data) {
+            //this.router.navigate([this.returnUrl]);
             _this.router.navigate([_this.returnUrl]);
         }, function (error) {
             _this.alertService.error(error._body);

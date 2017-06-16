@@ -62,10 +62,11 @@ function getAll() {
 }
 
 function getById(_id) {
-    var deferred = Q.defer();
-    db.query("SELECT * FROM user WHERE user_id="+_id, function (err, user) {
+    var deferred = Q.defer(),
+        queryString = "SELECT * FROM user WHERE user_id="+_id;
+    db.query(queryString, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
-        deferred.resolve(user[0]);
+        deferred.resolve(user);
     });
 
     /*db.users.findById(_id, function (err, user) {

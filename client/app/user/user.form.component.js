@@ -27,9 +27,15 @@ var UserFormComponent = (function () {
     }
     UserFormComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params.switchMap(function (params) { return _this.userService.getById(params['id']); }).subscribe(function (user) {
-            _this.user = user;
+        this.route.params.subscribe(function (params) {
+            _this.selected_user_id = params['id'];
         });
+        if (this.selected_user_id !== 'create') {
+            this.userService.getById(+this.selected_user_id).subscribe(function (user) { _this.user = user; });
+        }
+    };
+    UserFormComponent.prototype.selectedUser = function (user_id) {
+        return user_id;
     };
     UserFormComponent.prototype.submitUser = function () {
         console.log(this.user);

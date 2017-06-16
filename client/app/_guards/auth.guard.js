@@ -11,12 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var app_config_1 = require("../app.config");
 var AuthGuard = (function () {
     function AuthGuard(router) {
         this.router = router;
     }
     AuthGuard.prototype.canActivate = function (route, state) {
-        if (localStorage.getItem('currentUser')) {
+        if (app_config_1.config.user) {
             // logged in so return true
             return true;
         }

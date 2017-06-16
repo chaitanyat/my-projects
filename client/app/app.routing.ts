@@ -13,6 +13,7 @@ const appRoutes: Routes = [
         children:[
             { path: 'users', component: UsersComponent },
             { path: 'users/:id', component: UserFormComponent },
+            { path: 'users/create', component: UserFormComponent },
         ] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },

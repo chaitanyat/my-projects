@@ -25,13 +25,15 @@ var AuthenticationService = (function () {
             var user = response.json();
             if (user && user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
+                //localStorage.setItem('currentUser', JSON.stringify(user));
+                app_config_1.config.user = user;
             }
         });
     };
     AuthenticationService.prototype.logout = function () {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        //localStorage.removeItem('currentUser');
+        delete app_config_1.config.user;
     };
     return AuthenticationService;
 }());

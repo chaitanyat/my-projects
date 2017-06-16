@@ -17,6 +17,7 @@ import { UserService } from '../_services/index';
 
 export class UserFormComponent implements OnInit {
     user: User;
+    selected_user_id: string;
 
     constructor(private userService: UserService,
                 private route: ActivatedRoute,
@@ -25,9 +26,15 @@ export class UserFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.route.params.switchMap((params: Params) => this.userService.getById(params['id'])).subscribe(user => {
-            this.user = user;
+        this.route.params.subscribe(params => {
+            this.selected_user_id = params['id'];
         });
+        if(this.selected_user_id !== 'create') {
+            this.userService.getById(+this.selected_user_id).subscribe(user => {this.user = user});
+        }
+    }
+    selectedUser(user_id: string): string {
+        return user_id;
     }
 
     submitUser(): void {

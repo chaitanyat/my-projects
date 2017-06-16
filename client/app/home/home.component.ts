@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { User } from '../_models/index';
-import { UserService } from '../_services/index';
+import { config } from '../app.config';
+import {User} from "../_models/user";
 
 @Component({
     moduleId: module.id,
@@ -9,5 +9,9 @@ import { UserService } from '../_services/index';
 })
 
 export class HomeComponent {
-    
+    currentUser: User;
+
+    constructor() {
+        this.currentUser = config.user.data;
+    }
 }

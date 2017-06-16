@@ -50,9 +50,11 @@ function getAll(req, res) {
 }
 
 function getCurrent(req, res) {
-    userService.getById(req.user.sub)
+    userService.getById(req.params._id)
         .then(function (user) {
-            if (user) {
+            if (user.length === 1) {
+                res.send(user[0]);
+            } else if (user.length === 0) {
                 res.send(user);
             } else {
                 res.sendStatus(404);

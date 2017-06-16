@@ -9,12 +9,9 @@ import { UserService } from '../_services/index';
 })
 
 export class UsersComponent implements OnInit {
-	currentUser: User;
     users: User[] = [];
 
-    constructor(private userService: UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
+    constructor(private userService: UserService) { }
 
 	ngOnInit() {
 		this.loadAllUsers();

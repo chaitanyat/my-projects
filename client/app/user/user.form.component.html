@@ -1,6 +1,6 @@
 <div class="col-md-3">
     <h2>Edit User</h2>
-    <form name="form" (ngSubmit)="f.form.valid && submitUser()" #f="ngForm" novalidate>
+    <form  autocomplete="off" name="form" (ngSubmit)="f.form.valid && submitUser()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
             <label for="firstname">First Name</label>
             <input type="text" class="form-control" name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required />

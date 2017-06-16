@@ -8,4 +8,5 @@ var AppConfig = (function () {
 }());
 exports.AppConfig = AppConfig;
 ;
+exports.config = {};
 //# sourceMappingURL=app.config.js.map
