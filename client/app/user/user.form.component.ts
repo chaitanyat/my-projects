@@ -39,5 +39,10 @@ export class UserFormComponent implements OnInit {
 
     submitUser(): void {
         console.log(this.user);
+        if(this.user.user_id) {
+            this.userService.update(this.user).subscribe(response => { console.log(response); });
+        } else {
+            this.userService.create(this.user).subscribe(response => { console.log(response); });
+        }
     }
 }

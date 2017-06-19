@@ -39,6 +39,12 @@ var UserFormComponent = (function () {
     };
     UserFormComponent.prototype.submitUser = function () {
         console.log(this.user);
+        if (this.user.user_id) {
+            this.userService.update(this.user).subscribe(function (response) { console.log(response); });
+        }
+        else {
+            this.userService.create(this.user).subscribe(function (response) { console.log(response); });
+        }
     };
     return UserFormComponent;
 }());

@@ -84,10 +84,23 @@ function getById(_id) {
 }
 
 function create(userParam) {
-    var deferred = Q.defer();
+    var deferred = Q.defer(),
+        queryString = "SELECT * FROM user WHERE mail_id="+userParam.mail_id;
+    db.query(queryString, function (err, user) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if (user) {
+            // username already exists
+            deferred.reject('Username "' + userParam.mail_id + '" already exists');
+        } else {
+            createUser();
+        }
+    });
+
+
 
     // validation
-    db.users.findOne(
+    /*db.users.findOne(
         { username: userParam.username },
         function (err, user) {
             if (err) deferred.reject(err.name + ': ' + err.message);
@@ -98,22 +111,32 @@ function create(userParam) {
             } else {
                 createUser();
             }
-        });
+        });*/
 
     function createUser() {
         // set user object to userParam without the cleartext password
-        var user = _.omit(userParam, 'password');
+        var user = _.omit(userParam, 'password'),
+            queryString = "INSERT into user VALUES ("+JSON.stringify(userParam)+")";
+
+        console.log(queryString);
 
         // add hashed password to user object
-        user.hash = bcrypt.hashSync(userParam.password, 10);
+        //user.hash = bcrypt.hashSync(userParam.password, 10);
 
-        db.users.insert(
+
+        db.query(queryString, function (err, user) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            deferred.resolve(user);
+        });
+
+        /*db.users.insert(
             user,
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
 
                 deferred.resolve();
-            });
+            });*/
     }
 
     return deferred.promise;
